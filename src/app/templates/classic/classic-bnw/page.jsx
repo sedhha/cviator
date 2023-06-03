@@ -7,18 +7,20 @@ import ProfessionalExperience from './components/ProfessionalExperience';
 import Education from './components/Education';
 import Skills from './components/Skills';
 import Achievements from './components/TechnicalAchievements';
-import { useState } from 'react';
+import Dialog from './components/Dialog';
+import useGetEditContext from '@/hooks/useEditorContext';
 
 const ClassicBnW = () => {
-	const [inPrintMode, setInPrintMode] = useState(false);
+	const { firstName, lastName } = useGetEditContext();
 	return (
 		<div
 			className={`${classes.container} ${
-				inPrintMode ? classes.container_printArea : ''
+				false ? classes.container_printArea : ''
 			}`}
 		>
+			<Dialog />
 			<h1 className={`${classes.nameTitle}`}>
-				Shivam <strong>Sahil</strong>
+				{firstName} <strong>{lastName}</strong>
 			</h1>
 			<AddressDetails />
 			<MetaDetails />

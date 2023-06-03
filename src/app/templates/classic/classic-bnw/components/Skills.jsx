@@ -1,80 +1,5 @@
+import useGetEditContext from '@/hooks/useEditorContext';
 import classes from '../styles.module.css';
-
-const skills = [
-	{
-		pointer:
-			'Programming Languages: TypesScript | JavaScript | Python | Scala | Matlab | C++',
-		highlights: [
-			'TypesScript',
-			'JavaScript',
-			'Python',
-			'Scala',
-			'Matlab',
-			'C++',
-		],
-	},
-	{
-		pointer:
-			'Tools: CI/CD | AEM | Datadog | Contentful | Firebase | GitHub Actions | Unit Testing | E2E and Integration Testing | Serverless',
-		highlights: [
-			'CI/CD',
-			'AEM',
-			'Datadog',
-			'Contentful',
-			'Firebase',
-			'Unit Testing',
-			'E2E and Integration Testing',
-			'Serverless',
-		],
-	},
-	{
-		pointer:
-			'Frameworks: NEXT JS | React JS | React Native | Scala-Play | Node JS | Appscript | Flask | Fast API | Redux Toolkit | Sass | Tailwind | Jest',
-		highlights: [
-			'NEXT JS',
-			'React JS',
-			'React Native',
-			'Scala-Play',
-			'Node JS',
-			'Appscript',
-			'Flask',
-			'Fast API',
-			'Redux Toolkit',
-			'Sass',
-			'Tailwind',
-			'Jest',
-		],
-	},
-	{
-		pointer:
-			'Technologies: Google Cloud | Authentication Protocols | JWT | Intuit QuickBooks | Datadog | Web Sockets | GraphQL | RESTful Protocols | SQL | Google Big Query | Cloud Functions | Docker Containerization',
-		highlights: [
-			'Google Cloud',
-			'Authentication Protocols',
-			'JWT',
-			'Intuit QuickBooks',
-			'Datadog',
-			'Web Sockets',
-			'GraphQL',
-			'RESTful Protocols',
-			'SQL',
-			'Google Big Query',
-			'Cloud Functions',
-			'Docker Containerization',
-		],
-	},
-	{
-		pointer:
-			'Hardware: Microcontroller Raspberry Pi | (Arduino + Nodemcu) | Intel Galileo | Basler TOF Cam',
-		highlights: [
-			'Microcontroller Raspberry Pi',
-			'Arduino',
-			'Nodemcu',
-			'Intel Galileo',
-			'Basler TOF Cam',
-		],
-	},
-];
 
 function generateStrongText(input) {
 	const { pointer, highlights } = input;
@@ -101,16 +26,32 @@ function generateStrongText(input) {
 
 	return nodes;
 }
-const Skills = () => (
-	<section data-testid='skills-section-classic-bnw'>
-		<h1 className={classes.sideNameTitle}>Skills</h1>
-		<div className={classes.ExperienceContainer}>
-			<ul className={classes.UnOrderedList}>
-				{skills.map((item) => {
-					return <li key={item.pointer} className={classes.bulletPoints}>{generateStrongText(item)}</li>;
-				})}
-			</ul>
-		</div>
-	</section>
-);
+const Skills = () => {
+	const { skills } = useGetEditContext();
+	const parsed = JSON.parse(skills);
+	return (
+		<section data-testid='skills-section-classic-bnw'>
+			<h1 className={classes.sideNameTitle}>Skills</h1>
+			<div className={classes.ExperienceContainer}>
+				<ul className={classes.UnOrderedList}>
+					{parsed.map((item) => {
+						return (
+							<li
+								key={item.pointer}
+								className={classes.bulletPoints}
+							>
+								{(generateStrongText(item) ?? []).map((Element, id) => (
+									<Element.type
+										{...Element.props}
+										key={id}
+									></Element.type>
+								))}
+							</li>
+						);
+					})}
+				</ul>
+			</div>
+		</section>
+	);
+};
 export default Skills;

@@ -1,111 +1,6 @@
+import { Fragment } from 'react';
 import classes from '../styles.module.css';
-
-const professionalExperiences = [
-	{
-		title: 'Software Engineer',
-		org: 'Optum Inc, UnitedHealth Group',
-		startDate: 1635705000000,
-		endDate: -1,
-		bullets: [
-			{
-				pointer:
-					'Built recursion based nested JSON Editor UI to edit nested JSONs to any possible depth (React with TypeScript)',
-				highlights: ['recursion', 'nested JSON Editor UI', 'JSONs'],
-			},
-			{
-				pointer:
-					'Migration of CMS from Contentful to Adobe Experience Manager (Scala Play Integration with GraphQL, HTTP Assets & Query Builder API)',
-				highlights: ['CMS', 'Adobe Experience Manager'],
-			},
-			{
-				pointer:
-					'Datadog real time alert monitors for capturing and alerting on CI/CD of production apps.',
-				highlights: ['Datadog'],
-			},
-			{
-				pointer:
-					'Integration of standalone React Native Module to bundle up with existing iOS App',
-				highlights: ['React Native', 'iOS App'],
-			},
-			{
-				pointer:
-					'Migrated Context API based state management to Redux toolkit along with unmounting clean-up optimizations and reducing repetitive API calls',
-				highlights: ['Context API', 'Redux toolkit'],
-			},
-			{
-				pointer:
-					'Deployed and created CI/CD pipelines for frontend and backend apps involving mocking calls, linting, unit testing, integration testing and e2e testing.',
-				highlights: [
-					'CI/CD pipelines',
-					'mocking calls',
-					'linting',
-					'unit testing',
-					'integration testing',
-					'e2e testing',
-				],
-			},
-		],
-	},
-	{
-		title: 'Software Engineer',
-		org: 'Yoptima Media Pvt Ltd',
-		startDate: 1578853800000,
-		endDate: 1635705000000,
-		bullets: [
-			{
-				pointer:
-					'End to End Analytics based Campaign Performance App (React + Express + Fast API & secured using google oAuth)',
-				highlights: [],
-			},
-			{
-				pointer:
-					'End to End User-manager & Alert Monitor Web App (React + (Express and Flask) & secured with JWT Authentication)',
-				highlights: [
-					'User-manager & Alert Monitor Web App',
-					'JWT Authentication',
-				],
-			},
-			{
-				pointer:
-					'RESTful APIs to generate automated emails and alerts and developed tools to make data driven decisions.',
-				highlights: [],
-			},
-			{
-				pointer:
-					'End-to-end reporting Automation using Apache Superset, Google Big Query, Google Appscript and Google Data Studio.',
-				highlights: [
-					'Apache Superset',
-					'Google Big Query',
-					'Google Appscript',
-					'Google Data Studio',
-				],
-			},
-		],
-	},
-	{
-		title: 'Robotics & Programming Mentor',
-		org: 'eckovation pvt. ltd.',
-		startDate: 1562956200000,
-		endDate: 1594578600000,
-		bullets: [
-			{
-				pointer:
-					'Joined as a Matlab Programming mentor and later promoted to Robotics, IoT, Solidworks, Ansys, C, C++, etc. mentor.',
-				highlights: [],
-			},
-			{
-				pointer:
-					'Defined and articulated learning outcomes, including measurements, performance metrics and changes to improve student learning.',
-				highlights: [],
-			},
-			{
-				pointer:
-					'Took Doubt Sessions on Robotics, IoT, Matlab, SolidWorks, Ansys, etc. to classes of around 100+ students.',
-				highlights: [],
-			},
-		],
-	},
-];
+import useGetEditContext from '@/hooks/useEditorContext';
 
 function getMonthAndYear(timestamp) {
 	const date = new Date(timestamp);
@@ -140,7 +35,9 @@ function generateStrongText(input) {
 
 		if (startIndex >= 0) {
 			if (startIndex > 0) {
-				nodes.push(<> {remainingText.substring(0, startIndex)} </>);
+				nodes.push(
+					<Fragment> {remainingText.substring(0, startIndex)} </Fragment>
+				);
 			}
 			nodes.push(<strong>{highlight}</strong>);
 			remainingText = remainingText.substring(endIndex);
@@ -148,23 +45,25 @@ function generateStrongText(input) {
 	}
 
 	if (remainingText.length > 0) {
-		nodes.push(<> {remainingText} </>);
+		nodes.push(<Fragment> {remainingText} </Fragment>);
 	}
 
 	return nodes;
 }
-const ProfessionalExperience = () => (
-	<section data-testid='professional-experience-section-classic-bnw'>
-		<h1 className={classes.sideNameTitle}>Professional Experience</h1>
-		<div className={classes.ExperienceContainer}>
-			{professionalExperiences.map(
-				({ title, org, startDate, endDate, bullets }) => {
+const ProfessionalExperience = () => {
+	const { professionalExperience } = useGetEditContext();
+	const parsed = JSON.parse(professionalExperience);
+	return (
+		<section data-testid='professional-experience-section-classic-bnw'>
+			<h1 className={classes.sideNameTitle}>Professional Experience</h1>
+			<div className={classes.ExperienceContainer}>
+				{parsed.map(({ title, org, startDate, endDate, bullets }, ii) => {
 					const startDateMonth = getMonthAndYear(startDate);
 					const endDateMonth =
 						endDate === -1 ? 'Present' : getMonthAndYear(endDate);
 					return (
 						<div
-							key={title + org}
+							key={title + org + ii}
 							className={classes.experienceContainer}
 						>
 							<div className={classes.experienceContainer_topSection}>
@@ -189,16 +88,26 @@ const ProfessionalExperience = () => (
 									</div>
 								</div>
 								<ul className={classes.UnOrderedList}>
-									{(bullets ?? []).map((item) => (
-										<li key={item.pointer} className={classes.bulletPoints}>{generateStrongText(item)}</li>
+									{(bullets ?? []).map((item, index) => (
+										<li
+											key={item.pointer + index}
+											className={classes.bulletPoints}
+										>
+											{(generateStrongText(item) ?? []).map((Element, id) => (
+												<Element.type
+													{...Element.props}
+													key={id}
+												></Element.type>
+											))}
+										</li>
 									))}
 								</ul>
 							</div>
 						</div>
 					);
-				}
-			)}
-		</div>
-	</section>
-);
+				})}
+			</div>
+		</section>
+	);
+};
 export default ProfessionalExperience;
