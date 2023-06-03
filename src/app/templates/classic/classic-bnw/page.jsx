@@ -3,6 +3,7 @@ import classes from './styles.module.css';
 import AddressDetails from './components/AddressDetails';
 import MetaDetails from './components/MetaDetails';
 import ProfessionalExperience from './components/ProfessionalExperience';
+import Education from './components/Education';
 
 const ClassicBnW = () => {
 	return (
@@ -13,6 +14,7 @@ const ClassicBnW = () => {
 			<AddressDetails />
 			<MetaDetails />
 			<ProfessionalExperience />
+            <Education />
 		</div>
 	);
 };

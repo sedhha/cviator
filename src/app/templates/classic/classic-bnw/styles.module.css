@@ -63,7 +63,8 @@
 	font-size: 1rem;
 }
 .experienceContainer {
-	padding: 1rem 0;
+	padding: 0 1rem;
+    margin-top: 0.5rem;
 }
 .ExperienceContainer {
 	padding: 0 0.5rem;
@@ -78,6 +79,7 @@
 .experienceContainer_title {
 	font-size: 0.9rem;
 	font-weight: 600;
+    text-transform: capitalize;
 }
 .experienceContainer_org {
 	font-size: 1rem;
