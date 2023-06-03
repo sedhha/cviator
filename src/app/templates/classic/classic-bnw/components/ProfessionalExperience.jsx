@@ -190,7 +190,7 @@ const ProfessionalExperience = () => (
 								</div>
 								<ul className={classes.UnOrderedList}>
 									{(bullets ?? []).map((item) => (
-										<li key={item.pointer}>{generateStrongText(item)}</li>
+										<li key={item.pointer} className={classes.bulletPoints}>{generateStrongText(item)}</li>
 									))}
 								</ul>
 							</div>
