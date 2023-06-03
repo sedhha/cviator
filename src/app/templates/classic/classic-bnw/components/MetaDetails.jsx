@@ -26,7 +26,7 @@ const metaDetails = [
 	},
 	{
 		title: 'Stack Overflow',
-		value: 'Shivam Sahil | Stack Overflow',
+		value: 'Shivam Sahil',
 		hyperLinked: true,
 		hyperLinkedUrl: 'https://stackoverflow.com/users/8176451/shivam-sahil',
 	},

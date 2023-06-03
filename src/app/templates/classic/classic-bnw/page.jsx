@@ -10,7 +10,7 @@ import Achievements from './components/TechnicalAchievements';
 import { useState } from 'react';
 
 const ClassicBnW = () => {
-	const [inPrintMode, setInPrintMode] = useState(true);
+	const [inPrintMode, setInPrintMode] = useState(false);
 	return (
 		<div
 			className={`${classes.container} ${
