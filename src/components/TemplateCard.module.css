@@ -1,0 +1,11 @@
+.card {
+    text-align: center;
+  }
+  
+  .card-content {
+    padding: 5px;
+  }
+  
+  .card img {
+    max-width: 100%;
+  }
