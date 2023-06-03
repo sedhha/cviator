@@ -1,3 +1,7 @@
+:root {
+	--gray: #595959;
+	--hover-blue: #5E83D3;
+}
 .heading {
 	background: #4fcf53;
 	background: radial-gradient(
@@ -16,6 +20,11 @@
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+* {
+	margin: 0;
+	padding: 0;
 }
 
 body {
