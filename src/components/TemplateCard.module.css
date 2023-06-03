@@ -1,11 +1,17 @@
 .card {
-    text-align: center;
-  }
-  
-  .card-content {
-    padding: 5px;
-  }
-  
-  .card img {
-    max-width: 100%;
-  }
+	text-align: center;
+	transition: 0.3s ease-in all;
+  cursor: pointer;
+}
+
+.card-content {
+	padding: 5px;
+}
+
+.card img {
+	max-width: 100%;
+}
+.card:hover {
+	scale: 0.98;
+
+}
