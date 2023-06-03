@@ -82,6 +82,29 @@ const professionalExperiences = [
 			},
 		],
 	},
+	{
+		title: 'Robotics & Programming Mentor',
+		org: 'eckovation pvt. ltd.',
+		startDate: 1562956200000,
+		endDate: 1594578600000,
+		bullets: [
+			{
+				pointer:
+					'Joined as a Matlab Programming mentor and later promoted to Robotics, IoT, Solidworks, Ansys, C, C++, etc. mentor.',
+				highlights: [],
+			},
+			{
+				pointer:
+					'Defined and articulated learning outcomes, including measurements, performance metrics and changes to improve student learning.',
+				highlights: [],
+			},
+			{
+				pointer:
+					'Took Doubt Sessions on Robotics, IoT, Matlab, SolidWorks, Ansys, etc. to classes of around 100+ students.',
+				highlights: [],
+			},
+		],
+	},
 ];
 
 function getMonthAndYear(timestamp) {
@@ -107,6 +130,7 @@ function getMonthAndYear(timestamp) {
 
 function generateStrongText(input) {
 	const { pointer, highlights } = input;
+	if (!highlights.length) return [<>{pointer}</>];
 	const nodes = [];
 	let remainingText = pointer;
 
