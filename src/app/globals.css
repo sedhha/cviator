@@ -1,6 +1,6 @@
 :root {
 	--gray: #595959;
-	--hover-blue: #5E83D3;
+	--hover-blue: #5e83d3;
 }
 .heading {
 	background: #4fcf53;
@@ -62,9 +62,9 @@ body {
 	outline: none;
 	cursor: pointer;
 	border: none;
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
 	background: #3cb0fd;
 	background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
 	background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
@@ -72,4 +72,46 @@ body {
 	background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
 	background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
 	text-decoration: none;
-  }
+}
+
+.buttonClass {
+	font-size: 10px;
+	font-family: Arial;
+	border-width: 1px;
+	padding: 0.5rem 1rem;
+	color: #fff;
+	border-color: #84bbf3;
+	font-weight: bold;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+	text-shadow: inset 0px 1px 0px #528ecc;
+	background: linear-gradient(#79bbff, #378de5);
+	cursor: pointer;
+	transition: 0.3s ease-in all;
+}
+
+.buttonClass:hover {
+	background: linear-gradient(#378de5, #79bbff);
+	scale: 0.98;
+}
+
+@media print {
+	.edit-icon {
+		display: none;
+	}
+}
+
+.edit-icon {
+	position: fixed;
+	top: 2vh;
+	right: 2vh;
+	cursor: pointer;
+	transition: 0.3s ease-in all;
+}
+
+.edit-icon:hover {
+	scale: 0.98;
+}

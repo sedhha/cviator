@@ -9,32 +9,42 @@ const Dialog = () => {
 		number,
 		metaDetails,
 		professionalExperience,
-        skills,
-        setSkills,
-        education,
-        achievements,
-        setAchievements,
-        setEducation,
+		skills,
+		setSkills,
+		education,
+		achievements,
+		setAchievements,
+		setEducation,
 		setFirstName,
 		setLastName,
 		setAddress,
 		setNumber,
+		setEditMode,
 		setMetaDetails,
 		setProfessionalExperience,
 	} = useGetEditContext();
+
+	const formatContent = (input, setterFunction) => {
+		try {
+			const parsed = JSON.parse(input);
+			const formatted = JSON.stringify(parsed, null, 4);
+			setterFunction(formatted);
+		} catch (e) {
+			return;
+		}
+	};
+	const closeEditMode = () => {
+		setEditMode(false);
+	};
 	return (
 		<dialog
 			open={editMode}
 			className={classes.EditorDialog}
 		>
-			<div className={classes.InternalDialog}>
-                
-				<h2 className={classes.dialogTitle}>
-					Update JSON to modify your resume.
-				</h2>
-                <form method='dialog'>
-					<button className='btn'>Save Changes</button>
-				</form>
+			<h2 className={classes.dialogTitle}>
+				Update JSON to modify your resume.
+			</h2>
+			<div className={classes.EditDialogContent}>
 				<div className={classes.DialogInputField}>
 					<div>
 						<label className={classes.Label}>Name: </label>
@@ -72,7 +82,15 @@ const Dialog = () => {
 					</div>
 				</div>
 				<div className={classes.DialogInputFieldItem}>
-					<label className={classes.Label}>MetaDetails: </label>
+					<div className={classes.LabelAndButton}>
+						<label className={classes.Label}>MetaDetails: </label>
+						<button
+							className='buttonClass'
+							onClick={() => formatContent(metaDetails, setMetaDetails)}
+						>
+							Format JSON
+						</button>
+					</div>
 					<textarea
 						rows={10}
 						value={metaDetails}
@@ -86,7 +104,17 @@ const Dialog = () => {
 					/>
 				</div>
 				<div className={classes.DialogInputFieldItem}>
-					<label className={classes.Label}>Professional Details: </label>
+					<div className={classes.LabelAndButton}>
+						<label className={classes.Label}>Professional Details: </label>
+						<button
+							className='buttonClass'
+							onClick={() =>
+								formatContent(professionalExperience, setProfessionalExperience)
+							}
+						>
+							Format JSON
+						</button>
+					</div>
 					<textarea
 						rows={10}
 						value={professionalExperience}
@@ -100,7 +128,15 @@ const Dialog = () => {
 					/>
 				</div>
 				<div className={classes.DialogInputFieldItem}>
-					<label className={classes.Label}>Education: </label>
+					<div className={classes.LabelAndButton}>
+						<label className={classes.Label}>Education Details: </label>
+						<button
+							className='buttonClass'
+							onClick={() => formatContent(education, setEducation)}
+						>
+							Format JSON
+						</button>
+					</div>
 					<textarea
 						rows={10}
 						value={education}
@@ -113,8 +149,16 @@ const Dialog = () => {
 						}}
 					/>
 				</div>
-                <div className={classes.DialogInputFieldItem}>
-					<label className={classes.Label}>Skills: </label>
+				<div className={classes.DialogInputFieldItem}>
+					<div className={classes.LabelAndButton}>
+						<label className={classes.Label}>Skills: </label>
+						<button
+							className='buttonClass'
+							onClick={() => formatContent(skills, setSkills)}
+						>
+							Format JSON
+						</button>
+					</div>
 					<textarea
 						rows={10}
 						value={skills}
@@ -127,8 +171,16 @@ const Dialog = () => {
 						}}
 					/>
 				</div>
-                <div className={classes.DialogInputFieldItem}>
-					<label className={classes.Label}>Achievments: </label>
+				<div className={classes.DialogInputFieldItem}>
+					<div className={classes.LabelAndButton}>
+						<label className={classes.Label}>Achievement Details: </label>
+						<button
+							className='buttonClass'
+							onClick={() => formatContent(achievements, setAchievements)}
+						>
+							Format JSON
+						</button>
+					</div>
 					<textarea
 						rows={10}
 						value={achievements}
@@ -142,6 +194,13 @@ const Dialog = () => {
 					/>
 				</div>
 			</div>
+			<br />
+			<button
+				className='btn'
+				onClick={closeEditMode}
+			>
+				Save Changes
+			</button>
 		</dialog>
 	);
 };

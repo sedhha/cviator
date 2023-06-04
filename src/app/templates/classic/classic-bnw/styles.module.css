@@ -175,8 +175,14 @@
 	padding: 2rem;
 	translate: -50% -50%;
 	background-color: white;
-    max-height: 80vh;
-    overflow-y: auto;
+}
+
+.EditDialogContent {
+	max-height: 75vh;
+	overflow-y: auto;
+    display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
 }
 
 .dialogTitle {
@@ -208,14 +214,14 @@
 	padding: 1rem;
 }
 
-.InternalDialog {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
+.DialogInputFieldItem {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5rem;
 }
 
-.DialogInputFieldItem {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
+.LabelAndButton {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }

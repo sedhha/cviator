@@ -7,10 +7,7 @@ const EditContext = createContext(undefined);
 const useGetEditContext = () => useContext(EditContext);
 
 const Provider = ({ children }) => {
-	const { get } = useSearchParams();
-	const inEditMode = JSON.parse(get('inEditMode') ?? false);
-
-	const [editMode, setEditMode] = useState(inEditMode);
+	const [editMode, setEditMode] = useState(false);
 	const [firstName, setFirstName] = useState('Shivam');
 	const [lastName, setLastName] = useState('Sahil');
 	const [address, setAddress] = useState('New Delhi, India');

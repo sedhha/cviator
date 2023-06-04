@@ -8,6 +8,7 @@ import Education from './components/Education';
 import Skills from './components/Skills';
 import Achievements from './components/TechnicalAchievements';
 import Dialog from './components/Dialog';
+import Edit from './components/Edit';
 import useGetEditContext from '@/hooks/useEditorContext';
 
 const ClassicBnW = () => {
@@ -28,6 +29,7 @@ const ClassicBnW = () => {
 			<Education />
 			<Skills />
 			<Achievements />
+			<Edit />
 			<h2 className={classes.References}>References available on request </h2>
 		</div>
 	);
