@@ -8,6 +8,7 @@ export default function Home() {
 			<h2 className='h2'>
 				Build your CV with JSON browsing through 1000s of re-usable templates!
 			</h2>
+			<br />
 			<div className={styles.Grid}>
 				<TemplateCard src={'/sample.png'} />
 				<TemplateCard src={'/sample.png'} />
